@@ -5596,9 +5596,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-accelerometer@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-accelerometer/-/react-accelerometer-1.0.1.tgz#b2a62d9ccc696d2bb8682a5c026d6ae276d948b0"
+react-accelerometer-field@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-accelerometer-field/-/react-accelerometer-field-1.0.2.tgz#0361210179680d668df75db984fb679cecd3fa8a"
   dependencies:
     http-server "^0.9.0"
 

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { render } from 'react-dom'
-import ReactAccelerometer from 'react-accelerometer'
+import ReactAccelerometer from 'react-accelerometer-field'
 import { Motion, spring } from 'react-motion'
 
 
