@@ -46,16 +46,18 @@ class Mobile extends Component {
   render() {
     return (
         <ReactAccelerometerMotion>
-          {({ x, y }) => {
+          {({ x, y, z }) => {
             return (
             <div>
               <img
-                src='https://www.google.com.eg/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
+                src='http://46.101.95.179/wp-content/uploads/2017/11/intervision-lazer.png'
                 style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
               />
               <span>{x}</span>
               <br/>
               <span>{y}</span>
+              <br/>
+              <span>{z}</span>
               <br/>
               hello mob
             </div>

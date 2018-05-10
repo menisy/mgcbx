@@ -29,12 +29,9 @@ class Web extends Component {
             <div>
 
                 <img
-                  src='https://www.google.com.eg/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
-                  style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
+                  src='http://46.101.95.179/wp-content/uploads/2017/11/intervision-lazer.png'
+                  style={{ transform: `translate3d(${x*2}px, ${y*2}px, 0)` }}
                 />
-              <span>{x}</span>
-              <br/>
-              <span>{y}</span>
               <br/>
               hello web
             </div>
