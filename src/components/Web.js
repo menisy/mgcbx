@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import { Motion, spring } from 'react-motion';
 
-const socket = openSocket('http://localhost:8000');
+const socket = openSocket('https://mgcbx-web.herokuapp.com');
 
 
 function subscribeToView(cb) {

@@ -4,7 +4,7 @@ import openSocket from 'socket.io-client';
 
 import { Motion, spring } from 'react-motion'
 
-const socket = openSocket('http://192.168.1.7:8000');
+const socket = openSocket('https://mgcbx-web.herokuapp.com');
 
 
 function sendPosition(pos) {
