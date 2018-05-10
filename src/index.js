@@ -25,10 +25,14 @@ const ReactAccelerometerMotion = ({ children }) => (
 const AwesomeComponent = () => (
   <ReactAccelerometerMotion>
     {({ x, y }) => (
-      <img
-        src='https://www.google.com.eg/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
-        style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
-      />
+      <div>
+        <img
+          src='https://www.google.com.eg/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
+          style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
+        />
+        <span>{x}</span>
+        <span>{y}</span>
+      </div>
     )}
   </ReactAccelerometerMotion>
 )
