@@ -16,15 +16,14 @@ class Web extends Component {
     super(props);
     subscribeToView((err, position) => this.setState({
       x: position.x,
-      y: position.y,
-      z: position.z
+      y: position.y
     }));
   }
 
-  state = {x: 0, y: 0, z: 0};
+  state = {x: 0, y: 0};
 
   render() {
-    const {x, y, z} = this.state
+    const {x, y} = this.state
     return (
 
             <div>
@@ -32,7 +31,7 @@ class Web extends Component {
                 <img
                   className="logo"
                   src='http://46.101.95.179/wp-content/uploads/2017/11/intervision-lazer.png'
-                  style={{ transform: `translate3d(${x*3}px, ${y*3}px, ${z}px)` }}
+                  style={{ transform: `translate3d(${x*3}px, ${y*3}px, 0)` }}
                 />
               <br/>
               hello web

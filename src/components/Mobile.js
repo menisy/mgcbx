@@ -52,7 +52,7 @@ class Mobile extends Component {
               <img
                 className="logo"
                 src='http://46.101.95.179/wp-content/uploads/2017/11/intervision-lazer.png'
-                style={{ transform: `translate3d(${x}px, ${y}px, ${z}px)` }}
+                style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
               />
               <span>{x}</span>
               <br/>
