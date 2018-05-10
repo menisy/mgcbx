@@ -9,7 +9,7 @@ const local = "http://localhost:8000"
 console.log(process.env.NODE_ENV);
 const server = (process.env.NODE_ENV === 'production') ? heroku : local
 console.log(server)
-const socket = openSocket(server);
+const socket = openSocket(heroku);
 
 function subscribeToView(cb) {
   socket.on('position', position => cb(null, position));

@@ -9,7 +9,7 @@ const local = "http://192.168.1.7:8000"
 console.log(process.env.NODE_ENV);
 const server = (process.env.NODE_ENV === 'production') ? heroku : local
 
-const socket = openSocket(server);
+const socket = openSocket(heroku);
 
 
 function sendPosition(pos) {
