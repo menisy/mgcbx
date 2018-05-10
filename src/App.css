@@ -21,6 +21,9 @@
 .App-intro {
   font-size: large;
 }
+.logo{
+  max-width: 300px;
+}
 
 body{
   margin: 20rem;
