@@ -7,7 +7,9 @@
     "react-accelerometer-field": "^1.0.2",
     "react-dom": "^16.3.2",
     "react-motion": "^0.5.2",
-    "react-scripts": "1.1.4"
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "socket.io-client": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

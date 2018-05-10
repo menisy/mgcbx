@@ -1,40 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { render } from 'react-dom'
-import ReactAccelerometer from 'react-accelerometer-field'
-import { Motion, spring } from 'react-motion'
+import App from './App.js'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 
-
-/* Combining React-Accelerometer with React-Motion */
-const ReactAccelerometerMotion = ({ children }) => (
-
-  <ReactAccelerometer>
-          {(position) => {
-            if (!position) {
-              return children({ x: 0, y: 0 })
-            }
-            return (
-              <Motion style={{ x: spring(position.x), y: spring(position.y) }}>
-                {pos => children(pos)}
-              </Motion>
-            )
-          }}
-        </ReactAccelerometer>
-)
-
-const AwesomeComponent = () => (
-  <ReactAccelerometerMotion>
-    {({ x, y }) => (
-      <div>
-        <img
-          src='https://www.google.com.eg/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
-          style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
-        />
-        <span>{x}</span>
-        <span>{y}</span>
-      </div>
-    )}
-  </ReactAccelerometerMotion>
-)
-
-render(<AwesomeComponent />, document.querySelector('#app'))
+render(<BrowserRouter>
+        <App/>
+      </BrowserRouter>, document.querySelector('#app'))
