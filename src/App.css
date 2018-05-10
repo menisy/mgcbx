@@ -24,9 +24,8 @@
 .logo{
   max-width: 300px;
 }
-
 body{
-  margin: 20rem;
+  margin: 0;
 }
 
 @keyframes App-logo-spin {

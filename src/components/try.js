@@ -1,24 +1,7 @@
-import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
-import { Motion, spring } from 'react-motion';
-import * as THREE from 'three'
-
-// socket connection
-const heroku = "https://mgcbx-web.herokuapp.com/"
-const local = "http://localhost:8000"
-console.log(process.env.NODE_ENV);
-const server = (process.env.NODE_ENV === 'production') ? heroku : local
-console.log(server)
-const socket = openSocket(server);
-
-function subscribeToView(cb) {
-  socket.on('position', position => cb(null, position));
-  socket.emit('subscribeToView');
-}
-
-// three.js setup
 var height = window.innerHeight,
     width = window.innerWidth;
+
+// 3 must haves - SCENE , CAMERA, RENDERER
 
 var scene = new THREE.Scene(); // Creates a new scene
 
@@ -33,6 +16,7 @@ var light = new THREE.PointLight( 0xFFFF00 );
 
 var renderer = new THREE.WebGLRenderer();
       renderer.setSize( width, height ); // sets size of render to the screen size
+      document.body.appendChild( renderer.domElement); // Renders a canvas tag to the DOM
 
 var geometry = new THREE.BoxGeometry( 2, 2, 2); // give the cube it's dimensions (width, height, depth)
 var material = new THREE.MeshLambertMaterial( { color: 0xFF0000, wireframe: false} ); // creates material and gives it a color
@@ -57,62 +41,33 @@ function onWindowResize(){
 
 }
 
-var positionn = { x: 0, y: 0, z: 0 }
-
 // Render loop to display cube
 function render() {
   requestAnimationFrame( render ); // requestAnimationFrame will pause when the user navigates to a new tab
-  cube1.rotation.z = Math.round(positionn.z * 10) / -100;
-  cube1.rotation.x = Math.round(positionn.y * 10) / -100;
-  cube1.rotation.y = Math.round(positionn.x * 10) / -100;  // Runs every frame giving it the animation
+  cube1.rotation.z += 0.01;
+  cube1.rotation.x += 0.01;
+  cube1.rotation.y += 0.01;  // Runs every frame giving it the animation
+
+  cube2.rotation.x += 0.01;
+
+  cube3.rotation.y += 0.01;
+
   renderer.render( scene, camera );
 };
 
-function renderThreeJS(){
-  document.body.appendChild( renderer.domElement); // Renders a canvas tag to the DOM
-  render();
-}
+render();
 
+// Adding REACT.js for the html
 
-
-class Web extends Component {
-
-  constructor(props) {
-    super(props);
-    renderThreeJS();
-    subscribeToView((err, position) => {
-      positionn = position;
-      this.setState({
-        x: position.x,
-        y: position.y
-      })}
-    );
-  }
-
-  state = {x: 0, y: 0};
-
-
-  render() {
-    const {x, y} = this.state
+var Main = React.createClass ({
+  render: function() {
     return (
-      <div>
-        hello
+      <div className='container'>
+          <p>Hello World!</p>
+          <p>THREE.js and REACT</p>
       </div>
-      //<ModelContainer />
-
-            // <div>
-
-            //     <img
-            //       className="logo"
-            //       src='http://46.101.95.179/wp-content/uploads/2017/11/intervision-lazer.png'
-            //       style={{ transform: `translate3d(${x*3}px, ${y*3}px, 0)` }}
-            //     />
-            //   <br/>
-            //   hello web
-            // </div>
-
     );
   }
-}
+});
 
-export default Web;
+ReactDOM.render(<Main />, document.getElementById('root'));

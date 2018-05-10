@@ -4,7 +4,12 @@ import openSocket from 'socket.io-client';
 
 import { Motion, spring } from 'react-motion'
 
-const socket = openSocket('https://mgcbx-web.herokuapp.com');
+const heroku = "https://mgcbx-web.herokuapp.com/"
+const local = "http://192.168.1.7:8000"
+console.log(process.env.NODE_ENV);
+const server = (process.env.NODE_ENV === 'production') ? heroku : local
+
+const socket = openSocket(server);
 
 
 function sendPosition(pos) {
@@ -15,6 +20,33 @@ function subscribeToMobView() {
   socket.emit('subscribeToMobView');
 }
 
+var dataX = [];
+var dataY = [];
+var dataZ = [];
+
+function smoothArray(inputArr) {
+  //inputArr.shift();
+  //inputArr.push(newInput);
+  var sum = inputArr.reduce(function(a, b) { return a + b; });
+  var avg = sum / inputArr.length;
+  inputArr.shift();
+  return avg;
+}
+
+function smoothReading(position){
+  while(dataX.length < 7){
+    dataX.push(position.x);
+    dataY.push(position.y);
+    dataZ.push(position.z);
+  }
+  const pos = {
+    x: smoothArray(dataX),
+    y: smoothArray(dataY),
+    z: smoothArray(dataZ)
+  }
+
+  sendPosition(pos);
+}
 
 /* Combining React-Accelerometer with React-Motion */
 const ReactAccelerometerMotion = ({ children }) => (
@@ -22,10 +54,10 @@ const ReactAccelerometerMotion = ({ children }) => (
   <ReactAccelerometer>
           {(position) => {
             if (!position) {
-              sendPosition({ x: 0, y: 0 })
-              return children({ x: 0, y: 0 })
+              sendPosition({ x: 0, y: 0, z: 0 })
+              return children({ x: 0, y: 0, z: 0 })
             }
-            sendPosition(position)
+            smoothReading(position)
             return (
               <Motion style={{ x: spring(position.x), y: spring(position.y) }}>
                 {pos => children(pos)}
